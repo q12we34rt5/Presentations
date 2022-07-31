@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- reveal.js v3.6.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"
+        integrity="sha512-131e3mIrDAyUD075SVzvIjS0g97uDg0+/qAobDHd++h+lgFi4z88DVOpidm06jpb+0PzK4kcm9w79r6EHV0SkA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css"
+        integrity="sha512-ITH3NSfntO7uI5n+BnxGNXpzDUoOsmAXuG37UDONLxNYIdc0EBBOOQ1xyc+t9ag9ETSuBXFApx+Rod0uURfDYw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.min.js"
+        integrity="sha512-pIUSGiNwAKHXxIcFxTZZ6RC536f6dHQn3LPYUmilYzayjdH4C4GUNo9T9a6VbkUh3rHSsM52nG8kWOg+16oLFg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/katex.min.js"
+        integrity="sha512-aP2YrtSradiFnzmnU72H1bFSExqZGaTzlz+9iH+u2nHMJW7f2QtMEdYqImd5tB0DTdKNtIMVtBclnJnYPumYGw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"
+        integrity="sha512-nLsCkPS/rdxRVOkxiKnld9KhQ24V/5kRChzSZ3MoFODykbWyBlQRsHLrbpN3J4LabYBnXIp1EnRIo3ifvyiQIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="plugin/chalkboard/plugin.js"></script>
+    <link rel="stylesheet" href="plugin/chalkboard/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark.min.css"
+        integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"
+        integrity="sha512-gU7kztaQEl7SHJyraPfZLQCNnrKdaQi5ndOyt4L4UPL/FHDd/uB9Je6KDARIqwnNNE27hnqoWLBq+Kpe4iHfeQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/python.min.js"
+        integrity="sha512-iDlDwqOvWrZasw1DKx/EN1onOhfSdVh86HnlN64ndFMFtqa4ojwfWMit4B7KmZ7b7bMAaFZA8PnwWMBhfGbS2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+
+    <script src="lib/PyNote/PyNote.js"></script>
+    <link rel="stylesheet" href="lib/PyNote/PyNote.css" />
+
+    <style>
+        #note {
+            position: absolute;
+            width: 196px;
+            height: 57px;
+            z-index: 1000000;
+        }
+
+        ::selection {
+            background: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        section {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .std {
+            text-align: left;
+            width: 100%;
+            height: 100%;
+            font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+            color: #333333;
+            border: 4px solid #dde1e7;
+            border-radius: 20px;
+            box-shadow:
+                -3px -3px 5px #ffffffaf,
+                3px 3px 5px #0000002f,
+                inset -3px -3px 5px #ffffffaf,
+                inset 3px 3px 5px #0000002f;
+        }
+
+        .std code {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+        }
+
+        .big-title {
+            text-align: center;
+            width: 100%;
+            font-size: 50px;
+            margin-top: 200px;
+        }
+
+        .title {
+            text-align: center;
+            width: 100%;
+            font-size: 30px;
+            margin-top: 35px;
+        }
+
+        .h2 {
+            font-size: 25px;
+        }
+
+        .cont {
+            font-size: 20px;
+            line-height: 1.55;
+        }
+
+        .cont-50 {
+            font-size: 10px;
+            line-height: 0.775;
+        }
+
+        .del {
+            position: relative;
+        }
+
+        .del::before {
+            content: '';
+            width: 100%;
+            height: 0;
+            top: 50%;
+            border-top: 1px solid black;
+            position: absolute;
+        }
+
+        .hidh {
+            height: 0;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+        }
+
+        .hid {
+            opacity: 0;
+        }
+
+        .ml25 {
+            margin-left: 25px;
+        }
+
+        .ml100 {
+            margin-left: 100px;
+        }
+
+        .ml-25 {
+            margin-left: -25px;
+        }
+
+        .ml-50 {
+            margin-left: -50px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="note"></div>
+    <script>(async function () { (await PyNote)("#note"); })();</script>
+
+    <script>
+        const page = {
+            page_datas: [],
+            on(pagenum, event, callback) {
+                if (page.page_datas[pagenum] === undefined)
+                    page.page_datas[pagenum] = {};
+                page.page_datas[pagenum][event] = callback;
+            }
+        };
+    </script>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="big-title">RSA Encryption Algorithm</h1>
+
+                <aside class="notes">
+                    Shhh, these are your private notes 📝
+                </aside>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">RSA Algorithm</h1>
+                <div class="ml100">
+                    <div class="cont fragment" data-id="s1">Step1: Choose two distinct large prime numbers $p$, $q$, and let $n = pq$.</div>
+                    <div class="cont fragment" data-id="s2">Step2: Calculate $\phi(n) = (p - 1)(q - 1)$. ($\phi(n)$ is Euler function)</div>
+                    <div class="cont fragment" data-id="s3">Step3: Choose a number $0 < e < \phi(n)$ such that $\gcd(e,\ \phi(n)) = 1$.</div>
+                    <div class="cont fragment" data-id="s4">Step4: Calculate $0 < d < \phi(n)$ such that $ed \equiv 1\ (\text{mod}\ \phi(n))$.</div>
+                    <div class="cont fragment" data-id="s5">Then, $(n,\ e)$ is the public key, and $(n,\ d)$ is the private key.</div>
+                    <div class="cont fragment" data-id="s6">Sender: Encrypt message $M$ by calculating $a = M^{e} {\small\%} n$.</div>
+                    <div class="cont fragment" data-id="s7">Receiver: Decrypt message $a$ by calculating $M = a^{d} {\small\%} n$.</div>
+                    <div class="cont fragment" data-id="s8">$(\text{i.e.}\ M^{ed} \equiv M\ (\text{mod}\ n))$</div>
+                </div>
+
+                <aside class="notes">
+                    這裡用手寫解釋 ϕ(n) 是啥，然後先解釋 ϕ(p) = p - 1，再解釋為啥 ϕ(n) = (p - 1)(q - 1)
+                    (pq - 1) - (p - q)，pq - 1就是全都跟他互值，但這樣肯定多算，那多算的是哪些? 就是 p 跟 q 的倍數，而且 p q 倍數不重疊，所以就是扣掉 p 再扣掉 q
+                </aside>
+            </div></section>
+
+            <section>
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">RSA Algorithm</h1>
+                <div class="ml100">
+                    <div class="cont-50" data-id="s1">Step1: Choose two distinct large prime numbers $p$, $q$, and let $n = pq$.</div>
+                    <div class="cont-50" data-id="s2">Step2: Calculate $\phi(n) = (p - 1)(q - 1)$. ($\phi(n)$ is Euler function)</div>
+                    <div class="cont-50" data-id="s3">Step3: Choose a number $0 < e < \phi(n)$ such that $\gcd(e,\ \phi(n)) = 1$.</div>
+                    <div class="cont-50" data-id="s4">Step4: Calculate $0 < d < \phi(n)$ such that $ed \equiv 1\ (\text{mod}\ \phi(n))$.</div>
+                    <div class="cont-50" data-id="s5">Then, $(n,\ e)$ is the public key, and $(n,\ d)$ is the private key.</div>
+                    <div class="cont-50" data-id="s6">Sender: Encrypt message $M$ by calculating $a = M^{e} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s7">Receiver: Decrypt message $a$ by calculating $M = a^{d} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s8">$(\text{i.e.}\ M^{ed} \equiv M\ (\text{mod}\ n))$</div>
+                </div>
+
+                <div class="ml100" style="position:absolute;top:270px">
+                    <div class="cont">How to encrypt message?</div>
+                    <span class="cont fragment">$\quad$ We have a message $M$</span>
+                    <span class="cont fragment">, encrypt by exponentiation $M^{e}$</span>
+                    <span class="cont fragment">,<br>$\quad$ truncate by $(\text{mod}\ n)$</span>
+                    <span class="cont fragment">, ensure that $0 < M < n$.</span>
+                    <br>
+                    <span class="cont fragment">Then there exists a number $d$ such that $(M^{e})^{d} \equiv M (\text{mod}\ n)$.</span>
+                    <br>
+                    <span class="cont fragment">Question: How do we obtain $d$ by $n$ and $e$?</span>
+                </div>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Sample</h1>
+                <br><br>
+<pre><code class="python">n = 123
+e = 14
+M = 57
+a = (M ** e) % n
+
+print(f'a = (M ^ e) % n = {a}\n')
+for d in range(1, 100):
+    decode = (a ** d) % n
+    print(f'd = {d}, (a ^ d) % n = {decode}', end='')
+    print(' <---' if decode == M else '')
+</code></pre>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Pre-define methods</h1>
+                <br><br>
+<pre><code class="python">def extended_gcd(a, b):
+    if not b[0]: return a
+    c = a[0] // b[0]
+    return extended_gcd(b,(a[0]%b[0],a[1]-c*b[1],a[2]-c*b[2]))
+def gcd(a, b):
+    result = list(extended_gcd((a, 1, 0), (b, 0, 1)))
+    while result[1] < 0: result[1] += b; result[2] -= a
+    return tuple(result)
+def fast_pow(M, exp, mod):
+    val, cumulative = 1, M
+    for c in bin(exp)[-1:1:-1]:
+        if c == '1': val = (val * cumulative) % mod
+        cumulative = cumulative**2 % mod
+    return val
+</code></pre>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">RSA Sample</h1>
+                <br><br>
+<pre><code class="python"># RSA
+p, q = 37, 41
+#p, q = 15319, 15329
+n    = p * q
+φ    = (p - 1) * (q - 1)
+# public key
+e    = 29
+# private key generate
+_,d,k= gcd(e, φ)
+# message
+M = 30
+a = fast_pow(M, e, n)
+print('Output:\n')
+print(f'e = {e}, d = {d}')
+print(f'φ(n) = {φ}\n')
+print(f'gcd(e, φ(n)) = {_}\n')
+print(f'{d} * e + ({k}) * φ(n) = {d*e + k*φ}\n')
+print(f'M = {M}')
+print(f'a = (M ^ e) % n = {a}')
+print(f'M = (a ^ d) % n = {fast_pow(a, d, n)}')
+</code></pre>
+            </div></section>
+            </section>
+
+            <section>
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">RSA Algorithm</h1>
+                <div class="ml100" style="margin-top:30px">
+                    <div class="cont-50" data-id="s1">Step1: Choose two distinct large prime numbers $p$, $q$, and let $n = pq$.</div>
+                    <div class="cont-50" data-id="s2">Step2: Calculate $\phi(n) = (p - 1)(q - 1)$. ($\phi(n)$ is Euler function)</div>
+                    <div class="cont-50" data-id="s3">Step3: Choose a number $0 < e < \phi(n)$ such that $\gcd(e,\ \phi(n)) = 1$.</div>
+                    <div class="cont-50" data-id="s4">Step4: Calculate $0 < d < \phi(n)$ such that $ed \equiv 1\ (\text{mod}\ \phi(n))$.</div>
+                    <div class="cont-50" data-id="s5">Then, $(n,\ e)$ is the public key, and $(n,\ d)$ is the private key.</div>
+                    <div class="cont-50" data-id="s6">Sender: Encrypt message $M$ by calculating $a = M^{e} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s7">Receiver: Decrypt message $a$ by calculating $M = a^{d} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s8">$(\text{i.e.}\ M^{ed} \equiv M\ (\text{mod}\ n))$</div>
+                </div>
+                <div class="ml100" data-id="thm" style="position:absolute;top:270px">
+                    $
+                    \text{\bf Theorem:}\ (\text{Euler's Theorem})\\[0.5em]
+                    \qquad\text{Let}\ a, n \in \mathbb{Z}\ \text{with}\ \gcd(a,\ n) = 1.
+                    \ \text{Then}\ a^{\phi(n)} \equiv 1\ (\text{mod}\ n).
+                    $
+                </div>
+                <div class="ml100 fragment" data-id="s1" style="position:absolute;top:340px">
+                    In Step3, $\gcd(e,\ \phi(n)) = 1$ means that ${\bf s} \cdot e + {\bf t} \cdot \phi(n) = 1$ for some ${\bf s}, {\bf t} \in \mathbb{Z}.$
+                </div>
+                <div class="ml100 fragment" data-id="s2" style="position:absolute;top:370px">
+                    Notice that the number ${\bf s}$ in Step3 is already satisfy the requirement of Step4.
+                </div>
+                <div class="ml100 fragment" data-id="s3" style="position:absolute;top:400px">
+                    Thus $d = {\bf s}$.
+                </div>
+
+                <aside class="notes">
+                    這裡記得要先下去解釋一下 gcd 為啥可以是線性組合，然後再回來講這邊的東西
+                </aside>
+            </div></section>
+
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Euclidean Algorithm (輾轉相除法)</h1>
+                <div class="ml100">
+                    $
+                    \text{\bf Theorem:}\ (\text{Euclidean Algorithm})\\[0.5em]
+                    \qquad\text{Let}\ a, b \in \mathbb{Z}\ \text{and}\ d = \gcd(a,\ b),
+                    \ \text{then exists}\ s, t \in \mathbb{Z}\ \text{s.t.}\ sa + tb = d.
+                    $
+                    <br><br><br>
+                    $
+                    \text{\bf Example:}\\[0.5em]
+                    \qquad \begin{cases}
+                    \ a = 2021\\[0.2em]
+                    \ b = 1927\\[0.2em]
+                    \end{cases}\\[0.2em]
+                    \qquad \gcd(a,\ b) = 47\\[0.2em]
+                    \qquad -20 \times a + 21 \times b = \ -20 \times 2021 + 21 \times 1927 = 47\\[0.2em]
+                    \qquad \begin{cases}
+                    \ s = -20\\[0.2em]
+                    \ t = 21
+                    \end{cases}
+                    $
+                </div>
+                <aside class="notes">
+                    這裡要講的重點是 gcd(a, b) 為甚麼可以被表示成 a 跟 b 的線性組合。
+                </aside>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Sample code</h1>
+                <br><br>
+<pre><code class="python"># Euclidean Algorithm
+gcd = lambda a, b: gcd(b, a % b) if b else a
+
+N    = 50
+a, b = 6, 14
+d    = gcd(a, b)
+
+print(f'k={a:2}:', ''.join(['  ' if i % a else f'{i:2}' for i in range(N)]))
+print('     ', ''.join([f'{"  " if i % a else " |"}' for i in range(N)]))
+print(f'd={d:2}:', ''.join([f'{"--" if i % d else "-|"}' for i in range(N)]))
+print('     ', ''.join([f'{"  " if i % b else " |"}' for i in range(N)]))
+print(f'r={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
+</code></pre>
+            </div></section>
+            <section data-background-iframe="https://zh.wikipedia.org/zh-tw/%E8%BC%BE%E8%BD%89%E7%9B%B8%E9%99%A4%E6%B3%95" data-background-interactive></section>
+            </section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">RSA Algorithm</h1>
+                <div class="ml100" style="margin-top:30px">
+                    <div class="cont-50" data-id="s1">Step1: Choose two distinct large prime numbers $p$, $q$, and let $n = pq$.</div>
+                    <div class="cont-50" data-id="s2">Step2: Calculate $\phi(n) = (p - 1)(q - 1)$. ($\phi(n)$ is Euler function)</div>
+                    <div class="cont-50" data-id="s3">Step3: Choose a number $0 < e < \phi(n)$ such that $\gcd(e,\ \phi(n)) = 1$.</div>
+                    <div class="cont-50" data-id="s4">Step4: Calculate $0 < d < \phi(n)$ such that $ed \equiv 1\ (\text{mod}\ \phi(n))$.</div>
+                    <div class="cont-50" data-id="s5">Then, $(n,\ e)$ is the public key, and $(n,\ d)$ is the private key.</div>
+                    <div class="cont-50" data-id="s6">Sender: Encrypt message $M$ by calculating $a = M^{e} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s7">Receiver: Decrypt message $a$ by calculating $M = a^{d} {\small\%} n$.</div>
+                    <div class="cont-50" data-id="s8">$(\text{i.e.}\ M^{ed} \equiv M\ (\text{mod}\ n))$</div>
+                </div>
+                <div class="ml100" data-id="thm" style="position:absolute;top:270px">
+                    $
+                    \text{\bf Theorem:}\ (\text{Euler's Theorem})\\[0.5em]
+                    \qquad\text{Let}\ a, n \in \mathbb{Z}\ \text{with}\ \gcd(a,\ n) = 1.
+                    \ \text{Then}\ a^{\phi(n)} \equiv 1\ (\text{mod}\ n).
+                    $
+                </div>
+                <div class="ml100" data-id="s1" style="position:absolute;top:340px">
+                    In Step3, $\gcd(e,\ \phi(n)) = 1$ means that ${\bf s} \cdot e + {\bf t} \cdot \phi(n) = 1$ for some ${\bf s}, {\bf t} \in \mathbb{Z}.$
+                </div>
+                <div class="ml100" data-id="s2" style="position:absolute;top:370px">
+                    Notice that the number ${\bf s}$ in Step3 is already satisfy the requirement of Step4.
+                </div>
+                <div class="ml100" data-id="s3" style="position:absolute;top:400px">
+                    Thus $d = {\bf s}$.
+                </div>
+
+                <div style="position:absolute;left:370px;top:180px">
+                    <div class="ml100">
+                        ${\bf s} \cdot e + {\bf t} \cdot \phi(n) = 1$
+                    </div>
+                    <div class="ml100 fragment">
+                        $e \cdot d + {\bf t} \cdot \phi(n) = 1$
+                    </div>
+                    <div class="ml100 fragment">
+                        $M^{ed} \cdot (M^{\phi(n)})^{t} = M$
+                    </div>
+                    <div class="ml100 fragment">
+                        $M^{ed} = M\ (\text{mod}\ n)\ \text{; if}\ \gcd(M,\ n) = 1$
+                    </div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Vector space</h1>
+                <ol class="ml100">
+                    <li class="cont" data-id="l1"><span>${\bf u + v} \in V$</span></li>
+                    <li class="cont" data-id="l2"><span>${\bf u + v = v + u}$</span></li>
+                    <li class="cont" data-id="l3"><span>${\bf (u + v) + w = u + (v + w)}$</span></li>
+                    <li class="cont" data-id="l4"><span>${\bf 0} \in V\ (\text{i.e.}\ {\bf u + 0 = u})$</span></li>
+                    <li class="cont" data-id="l5"><span>$\forall {\bf u} \in V,\ \exists {\bf -u} \in V\ \text{s.t.}\ {\bf u + (-u) = 0}$</span></li>
+                    <li class="cont" data-id="l6"><span>$a{\bf u}\in V$</span></li>
+                    <li class="cont" data-id="l7"><span>$a{\bf (u + v)} = a{\bf u} + a{\bf v}$</span></li>
+                    <li class="cont" data-id="l8"><span>$(c + d){\bf u} = c{\bf u} + d{\bf u}$</span></li>
+                    <li class="cont" data-id="l9"><span>$c(d{\bf u}) = (cd){\bf u}$</span></li>
+                    <li class="cont" data-id="l10"><span>${\bf 1}u = u$</span></li>
+                </ol>
+
+                <aside class="notes">
+                    線性代數在這10條假設下發展出了不少理論，例如矩陣分解，傅立葉分析等等
+                </aside>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100">
+                    <li class="cont" data-id="l1"><span>${\bf u + v} \in V$</span></li>
+                    <li class="cont" data-id="l2"><span class="del">${\bf u + v = v + u}$</span></li>
+                    <li class="cont" data-id="l3"><span>${\bf (u + v) + w = u + (v + w)}$</span></li>
+                    <li class="cont" data-id="l4"><span>${\bf 0} \in V\ (\text{i.e.}\ {\bf u + 0 = u})$</span></li>
+                    <li class="cont" data-id="l5"><span>$\forall {\bf u} \in V,\ \exists {\bf -u} \in V\ \text{s.t.}\ {\bf u + (-u) = 0}$</span></li>
+                    <li class="cont" data-id="l6"><span class="del">$a{\bf u}\in V$</span></li>
+                    <li class="cont" data-id="l7"><span class="del">$a{\bf (u + v)} = a{\bf u} + a{\bf v}$</span></li>
+                    <li class="cont" data-id="l8"><span class="del">$(c + d){\bf u} = c{\bf u} + d{\bf u}$</span></li>
+                    <li class="cont" data-id="l9"><span class="del">$c(d{\bf u}) = (cd){\bf u}$</span></li>
+                    <li class="cont" data-id="l10"><span class="del">${\bf 1}u = u$</span></li>
+                </ol>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100">
+                    <li class="cont" data-id="l1"><span>${\bf u + v} \in V$</span></li>
+                    <li class="cont hidh" data-id="l2"><span class="del">${\bf u + v = v + u}$</span></li>
+                    <li class="cont" data-id="l3"><span>${\bf (u + v) + w = u + (v + w)}$</span></li>
+                    <li class="cont" data-id="l4"><span>${\bf 0} \in V\ (\text{i.e.}\ {\bf u + 0 = u})$</span></li>
+                    <li class="cont" data-id="l5"><span>$\forall {\bf u} \in V,\ \exists {\bf -u} \in V\ \text{s.t.}\ {\bf u + (-u) = 0}$</span></li>
+                    <li class="cont hidh" data-id="l6"><span class="del">$a{\bf u}\in V$</span></li>
+                    <li class="cont hidh" data-id="l7"><span class="del">$a{\bf (u + v)} = a{\bf u} + a{\bf v}$</span></li>
+                    <li class="cont hidh" data-id="l8"><span class="del">$(c + d){\bf u} = c{\bf u} + d{\bf u}$</span></li>
+                    <li class="cont hidh" data-id="l9"><span class="del">$c(d{\bf u}) = (cd){\bf u}$</span></li>
+                    <li class="cont hidh" data-id="l10"><span class="del">${\bf 1}u = u$</span></li>
+                </ol>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100">
+                    <li class="cont" data-id="l1"><span>${\bf u + v} \in V$</span></li>
+                    <li class="cont hidh" data-id="l2"><span class="del">${\bf u + v = v + u}$</span></li>
+                    <li class="cont" data-id="l3"><span>${\bf (u + v) + w = u + (v + w)}$</span></li>
+                    <li class="cont" data-id="l4"><span>${\bf 0} \in V\ (\text{i.e.}\ {\bf u + 0 = u})$</span></li>
+                    <li class="cont" data-id="l5"><span>$\forall {\bf u} \in V,\ \exists {\bf -u} \in V\ \text{s.t.}\ {\bf u + (-u) = 0}$</span></li>
+                    <li class="cont hidh" data-id="l6"><span class="del">$a{\bf u}\in V$</span></li>
+                    <li class="cont hidh" data-id="l7"><span class="del">$a{\bf (u + v)} = a{\bf u} + a{\bf v}$</span></li>
+                    <li class="cont hidh" data-id="l8"><span class="del">$(c + d){\bf u} = c{\bf u} + d{\bf u}$</span></li>
+                    <li class="cont hidh" data-id="l9"><span class="del">$c(d{\bf u}) = (cd){\bf u}$</span></li>
+                    <li class="cont hidh" data-id="l10"><span class="del">${\bf 1}u = u$</span></li>
+                </ol>
+
+                <ol class="ml100" data-id="ol">
+                    <div class="cont ml-25" data-id="gp">$(G,\ *): \text{Group}$</div>
+                    <li class="cont"><span>$a * b \in G$</span></li>
+                    <li class="cont"><span>$(a * b) * c = a * (b * c)$</span></li>
+                    <li class="cont"><span>$e \in G\ (\text{i.e.}\ a * e = a)$</span></li>
+                    <li class="cont"><span>$\forall a \in G,\ \exists a^{-1} \in G\ \text{s.t.}\ a * a^{-1} = e$</span></li>
+                </ol>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100" data-id="ol">
+                    <div class="cont ml-25" data-id="gp">$(G,\ *): \text{Group}$</div>
+                    <li class="cont"><span>$a * b \in G$</span></li>
+                    <li class="cont"><span>$(a * b) * c = a * (b * c)$</span></li>
+                    <li class="cont"><span>$e \in G\ (\text{i.e.}\ a * e = a)$</span></li>
+                    <li class="cont"><span>$\forall a \in G,\ \exists a^{-1} \in G\ \text{s.t.}\ a * a^{-1} = e$</span></li>
+                </ol>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100">
+                    <div class="cont ml-25" data-id="gp">$(G,\ *): \text{Group}$</div>
+                    <li class="cont"><span>$a * b \in G$</span></li>
+                    <li class="cont"><span>$(a * b) * c = a * (b * c)$</span></li>
+                    <li class="cont"><span>$e \in G\ (\text{i.e.}\ a * e = a)$</span></li>
+                    <li class="cont"><span>$\forall a \in G,\ \exists a^{-1} \in G\ \text{s.t.}\ a * a^{-1} = e$</span></li>
+                </ol>
+                <div class="ml100 cont" data-id="ex">Example</div>
+                <div class="ml100">
+                    <ul style="list-style-type:none">
+                        <li class="cont ml-25">$(\mathbb{Z},\ +)\ \ \ \text{e.g. 1 + 2 = 3}$</li>
+                        <br>
+                        <li class="cont ml-25">
+                            $\begin{aligned}
+                            (\mathbb{Z}_{n},\ +)
+                            \ \text{where}\ \ \ \mathbb{Z}_{n}\ \ & := \{\ [\,k\,]_{n} \mid k \in \mathbb{Z}\ \}\\
+                            \ \text{and}\ \ [\,k\,]_{n} & := \{\ a \in \mathbb{Z} \mid a \equiv k\ (\text{mod}\ n)\ \}
+                            \end{aligned}$
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Group theory</h1>
+                <ol class="ml100">
+                    <li class="cont"><span>$a * b \in G$</span></li>
+                    <li class="cont"><span>$(a * b) * c = a * (b * c)$</span></li>
+                    <li class="cont"><span>$e \in G\ (\text{i.e.}\ a * e = a)$</span></li>
+                    <li class="cont"><span>$\forall a \in G,\ \exists a^{-1} \in G\ \text{s.t.}\ a * a^{-1} = e$</span></li>
+                </ol>
+                <div class="ml100 cont" data-id="ex">Example</div>
+                <div class="ml100">
+                    <ul style="list-style-type:none">
+                        <li class="cont ml-25">
+                            $\begin{aligned}
+                            (\mathbb{Z}_{n},\ +)
+                            \ \text{where}\ \ \ \mathbb{Z}_{n}\ \ & := \{\ [\,k\,]_{n} \mid k \in \mathbb{Z}\ \}\\
+                            \ \text{and}\ \ [\,k\,]_{n} & := \{\ a \in \mathbb{Z} \mid a \equiv k\ (\text{mod}\ n)\ \}
+                            \end{aligned}$
+                        </li>
+                        <li class="cont ml-25">$\mathbb{Z}_{3} = \{ \dots,\ [\,-1\,]_{3},\ [\,0\,]_{3},\ [\,1\,]_{3},\ [\,2\,]_{3},\ [\,3\,]_{3},\ \dots \}$</li>
+                        <li class="cont ml-25">$[\,-1\,]_{3} + [\,3\,]_{3} = [\,-1 + 3\,]_{3} = [\,2\,]_{3} = [\,-1\,]_{3}$</li>
+                        <li class="cont ml-25">$[\,a - 3\,]_{3} = [\,a\,]_{3} = [\,a + 3\,]_{3} = [\,a + 6\,]_{3} = \dots = [\,a + 3r\,]_{3}$</li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">A consequence from the Lagrange theorem</h1>
+                <div class="ml100">
+                    $
+                    \text{\bf Theorem:}\ \text{(Lagrange Theorem)}\\[0.5em]
+                    \qquad\text{Let}\ G\ \text{be a finite group and}\ H \le G.
+                    \ \text{Then}\ |H|\ {\large\mid}\ |G|.
+                    $
+                    <br><br>
+                    $
+                    \text{\bf Corollary:}\\[0.5em]
+                    \qquad\text{Let}\ G\ \text{be a finite group and}\ a \in G.\ \text{Then}\ a^{|G|} = e.
+                    $
+                </div>
+                <br>
+                <div class="ml100">
+                    <div>$(G,\ *): \text{Group}\\[0.5em]$</div>
+                    <div>$\qquad a * b \in G$</div>
+                    <div>$\qquad (a * b) * c = a * (b * c)$</div>
+                    <div>$\qquad e \in G\ (\text{i.e.}\ a * e = a)$</div>
+                    <div>$\qquad \forall a \in G,\ \exists a^{-1} \in G\ \text{s.t.}\ a * a^{-1} = e$</div>
+                </div>
+                <aside class="notes">
+                    這裡要用手寫一下舉例，講一下在加法群之下這根本是廢話，但這個定理厲害的地方在於，就算不是加法群也行，例如說乘法群。
+                    然後講一下，如果此定理對，那代表的意思是 G 裡面的元素乘一乘都會變成單位元素，因此對於密碼學來說，我們可以把 a^|G| + 1，那就會回到 a，就有解密效果。
+                </aside>
+            </div></section>
+
+            <section>
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <aside class="notes">
+                    這個群有一個很特別的地方，就是他的元素剛好都是與 n 互值的元素，因此他的集合大小就是 ϕ(n)
+                </aside>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100 hid" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">
+                    $[\,a\,] = [\,b\,] \iff a \equiv b\ (\text{mod}\ n) \iff a = kn + b\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                    $\gcd(a,\ n) = sa + tn = s(kn + b) + tn = sb + (sk + t)n = r \cdot \gcd(b,\ n)\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                    $\cdots\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                    $\implies \gcd(a, n) = \gcd(b, n)$
+                    </div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100 hid" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">
+                        <div class="cont" style="position:absolute;left:219px;top:-3px">?</div>
+                        $[\,a\,] = [\,c\,]\ \text{and}\ [\,b\,] = [\,d\,] \implies [\,ab\,] = [\,cd\,]\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                        $\begin{cases}
+                        [\,a\,] = [\,c\,] \\
+                        [\,b\,] = [\,d\,]
+                        \end{cases}
+                        \implies
+                        \begin{cases}
+                        a - c = kn \\
+                        b - d = rn
+                        \end{cases}\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                        $ab - cd = ab - ad + ad - cd = a(b - d) + d(a - c) = a(rn) + d(kn) = n(ar + dk)\\[0.2em]$
+                    </div>
+                    <div class="fragment">
+                        $\implies ab - cd = n(ar + dk) \implies [\,ab\,] = [\,cd\,]$
+                    </div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100 hid" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">$\text{Note:}\ a \mid b \iff b = ka\ \text{for some}\ k\\[0.2em]$</div>
+                    <div class="fragment">$\text{Suppose that}\ \times\ \text{is not closed, then}\ \gcd(ab,\ n) = d > 1.\\[0.2em]$</div>
+                    <div class="fragment">$\text{Take a prime factor\ (質因數)}\ p\ \text{of}\ d.\ (\text{i.e.}\ p \mid d) \\[0.2em]$</div>
+                    <div class="fragment">$\text{Then}\ \gcd(ab,\ n) = d \implies d \mid ab\ \ \text{\&}\ \ d \mid n \implies p \mid ab\ \ \text{\&}\ \ p \mid n \implies p \mid a\ \ \text{or}\ \ p \mid b\\[0.2em]$</div>
+                    <div class="fragment">$\text{Then by}\ p \mid a\ \ \text{\&}\ \ p \mid n,\ \text{we have}\ p \mid \gcd(a,\ n) \iff \gcd(a,\ n) > 1. \rightarrow\!\leftarrow$</div>
+                </div>
+
+                <aside class="notes">
+                    這邊要稍微解釋一下 [a] 對應的是 gcd(a, n) = 1，[b] 對應的是 gcd(b, n) = 1，如果乘這個運算 closed 的話，那 [ab] 應該也要屬於 Z，換句話說就是 gcd(ab, n) = 1。
+                    所以我們這邊使用反證法，假設 gcd(ab, n) 不是 1，也就是說 gcd(ab, n) 是某個大於 1 的正整數 d。
+                    挑 d 的質因數是因為 d|ab 不能直接推 d|a or d|b。
+                </aside>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100 hid" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">$([\,a\,] \times [\,b\,]) \times [\,c\,] = [\,ab\,] \times [\,c\,] = [\,abc\,] = [\,a\,] \times [\,bc\,] = [\,a\,] \times ([\,b\,] \times [\,c\,])$</div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+                <div class="ml100 hid" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">$\text{Obviously},\ [\,1\,]\ \text{is the identity element.}$</div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <br>
+                <div class="ml100" data-id="s1">$\text{Proof:}\\[0.5em]$</div>
+                <div class="ml100" data-id="s7">$(6.)[\,a\,] \in \mathbb{Z}_{n}^{*}\ \text{is invertiable}$</div>
+                <div class="ml100 hid" data-id="s2">$(1.)\ \mathbb{Z}_{n}^{*}\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s3">$(2.)\times\ \text{is well-defined}$</div>
+                <div class="ml100 hid" data-id="s4">$(3.)\times\ \text{is closed}$</div>
+                <div class="ml100 hid" data-id="s5">$(4.)\times\ \text{is associative}$</div>
+                <div class="ml100 hid" data-id="s6">$(5.)\ \text{Exists identity element}\ [\,e\,] \in \mathbb{Z}_{n}^{*}$</div>
+
+                <div class="ml100" style="position:absolute;top:300px;">
+                    <div class="fragment">$[\,a\,] \in \mathbb{Z}_{n}^{*} \implies \gcd(a,\ n) = 1\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\qquad\implies sa + tn = 1\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\qquad\implies [\,sa + tn\,] = [\,1\,]\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\qquad\implies [\,sa\,] = [\,1\,]\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\qquad\implies [\,s\,] \times [\,a\,] = [\,1\,] \implies [\,s\,]\ \text{is the inverse of}\ [\,a\,].$</div>
+                </div>
+            </div></section>
+            </section>
+
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
+                <div class="ml100 cont" data-id="set" style="margin-top:30px">
+                    $\mathbb{Z}_{n}^{*} := \{\ [\,k\,] \mid k \in \mathbb{Z}\ \text{and}\ \gcd(k,\ n) = 1\ \}\ \text{where}\ [\,k\,]\ \text{is}\ [\,k\,]_{n}$.
+                </div><br>
+                <div class="ml100" data-id="thm">
+                    $
+                    \text{\bf Theorem:}\\[0.5em]
+                    \qquad (\mathbb{Z}_{n}^{*},\ \times)\ \text{is a group, where}\ \times\ \text{is defined by}\ [\,a\,] \times [\,b\,] =  [\,ab\,].
+                    $
+                </div>
+                <div class="ml100" style="position:absolute;top:250px">
+                    $
+                    \text{\bf Theorem:}\ (\text{Euler's Theorem})\\[0.5em]
+                    \qquad\text{Let}\ a, n \in \mathbb{Z}\ \text{with}\ \gcd(a,\ n) = 1.
+                    \ \text{Then}\ a^{\phi(n)} \equiv 1\ (\text{mod}\ n).
+                    $
+                </div>
+                <div class="ml100" style="position:absolute;top:320px">
+                    <div class="fragment">$\text{Proof:}\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\text{Consider}\ \mathbb{Z}_{n}^{*}.\ \text{Since}\ \gcd(a,\ n) = 1,\ \text{we have}\ [\,a\,] \in \mathbb{Z}_{n}^{*}.\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\text{Notice that}\ | \mathbb{Z}_{n}^{*} | = \phi(n).\ \text{By Lagrange theorem,}\ [\,a\,]^{\phi(n)} = [\,a\,]^{| \mathbb{Z}_{n}^{*} |} = [\,1\,].\\[0.2em]$</div>
+                    <div class="fragment">$\qquad\text{That is,}\ a^{\phi(n)} = 1\ (\text{mod}\ n).$</div>
+                </div>
+            </div></section>
+
+            <section data-background-color="#dde1e7" data-auto-animate>
+                <div class="big-title">Thanks</div>
+            </section>
+
+        </div>
+    </div>
+    <script>
+        Reveal.initialize({
+            width: 800,
+            height: 450,
+
+            // 參數設定[註1]
+            controls: true, // 控制按鈕
+            controlsTutorial: true, // 引導初學者功能
+            controlsLayout: 'bottom-right', // 控制按鈕位置
+            controlsBackArrows: 'faded', // 返回按鈕顯示方式
+            progress: true, // 簡報進度條
+            slideNumber: 'c/t', // 簡報當前頁碼
+            history: false, // 所有動作儲存在歷史紀錄
+            keyboard: true, // 鍵盤快捷鍵
+            overview: true, // 簡報導覽模式
+            center: true, // 簡報垂直置中
+            touch: true, // 觸碰模式
+            loop: false, // 循環模式
+            rtl: false, // 簡報方向為RTL模式
+            shuffle: false, // 簡報顯示順序為隨機模式
+            autoPlayMedia: null, // 簡報內影音媒體自動播放
+            autoSlide: 0, // 自動切換的秒數，0秒代表不自動
+            autoSlideStoppable: true, // 使用者在操作時停止自動切換
+            autoSlideMethod: Reveal.navigateNext, // 自動切換觸發的函式
+            mouseWheel: false, // 滑鼠滾輪可以切換簡報
+            transition: 'slide', // 轉場動畫
+            transitionSpeed: 'default', // 轉場速度
+            backgroundTransition: 'fade', // 簡報背景的轉場動畫
+            parallaxBackgroundImage: '', // 背景視差圖片
+            parallaxBackgroundSize: '', // 背景視差圖片尺寸(單位: 像素)
+            parallaxBackgroundHorizontal: null, // 水平背景視差，設0停止視差，null為自動計算(單位: 像素)
+            parallaxBackgroundVertical: null, // 垂直背景視差，設0停止視差，null為自動計算(單位: 像素)
+
+            //autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 0.5,
+            //autoAnimateUnmatched: true,
+
+            katex: {
+                version: 'latest',
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true }
+                ],
+                ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            plugins: [RevealMath.KaTeX, RevealNotes, RevealChalkboard],
+
+            notes_pointer: {
+                pointer: {
+                    size: 10,  // in pixels (scaled like the rest of reveal.js)
+                    color: 'rgba(255, 0, 0, 0.8)',  // something valid for css background-color
+                    key: 'A'
+                },
+                notes: {
+                    key: 'Q'
+                }
+            },
+            dependencies: [
+                { src: 'plugin/reveal.js-notes-pointer/notes-pointer.js', async: true },
+                // async is optional
+            ],	
+        });
+        //let cur_page = Reveal.getCurrentSlide();
+        //console.log(cur_page);
+        //Reveal.on('slidechanged', event => {
+        //    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        //    console.log(event);
+        //});
+    </script>
+
+</body>
+
+</html>
