@@ -34,7 +34,7 @@
     }
 
     // load font
-    await loadLibrary(`<link href="http://fonts.cdnfonts.com/css/alliance-no1" rel="stylesheet">`);
+    await loadLibrary(`<link href="https://fonts.cdnfonts.com/css/alliance-no1" rel="stylesheet">`);
     // load pyodide
     await loadLibrary(`<script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"></script>`);
     // load codemirror
