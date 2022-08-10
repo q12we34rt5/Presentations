@@ -118,6 +118,11 @@
             line-height: 1.55;
         }
 
+        .s-cont {
+            font-size: 18px;
+            line-height: 1.55;
+        }
+
         .cont-50 {
             font-size: 10px;
             line-height: 0.775;
@@ -207,7 +212,104 @@
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+        
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="s-cont">
+                        <li><span data-id="s0" class="hl-r">Introduction to Encryption</span>
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- Introduction to Encryption -->
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title" data-id="title">Introduction to Encryption</h1>
+
+                <div class="ml100 cont">$\ \ $ Given a message $M$.</div>
+                <ul class="ml100">
+                    <li class="cont">Symmetric cryptography</li>
+                    <div class="cont">
+                        $\quad$ Unique Key $\ \text{k}$ <br>
+                        $\quad$ Encrypt: $\ a = \text{k}(M)$<br>
+                        $\quad$ Decrypt: $\ M = \text{k}(a)$<br>
+                    </div>
+                    <li class="cont">Asymmetric cryptography</li>
+                    <div class="cont">
+                        $\quad$ Public Key $\ \text{e}$ <br>
+                        $\quad$ Private Key $\ \text{d}$ <br>
+                        $\quad$ Encrypt: $\ a = \text{e}(M)$<br>
+                        $\quad$ Decrypt: $\ M = \text{d}(a)$<br>
+                    </div>
+                </ul>
+                
+                <div class="cont" style="position:absolute;left:526px;top:196px">$\text{k}$</div>
+                <div class="cont" style="position:absolute;left:658px;top:196px">$\text{k}$</div>
+                <div class="cont" style="position:absolute;left:526px;top:316px">$\text{e}$</div>
+                <div class="cont" style="position:absolute;left:658px;top:316px">$\text{d}$</div>
+                <img style="position:absolute;left:450px;top:150px" src="assets/sym.png" width="300" alt="symmetric-cryptography">
+                <img style="position:absolute;left:450px;top:270px" src="assets/asym.png" width="300" alt="asymmetric-cryptography">
+                
+            </div></section>
+
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
@@ -239,7 +341,8 @@
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1" class="hl-r">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
@@ -307,7 +410,8 @@ for d in range(1, 100):
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
@@ -339,7 +443,8 @@ for d in range(1, 100):
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
@@ -667,7 +772,8 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
@@ -699,7 +805,8 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
                 <div class="ml100">
-                    <ul class="cont">
+                    <ul class="s-cont">
+                        <li><span data-id="s0">Introduction to Encryption</span>
                         <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
                                 <li><span data-id="s1s1">Simple example</span></li>
