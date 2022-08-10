@@ -162,6 +162,11 @@
         .ml-50 {
             margin-left: -50px;
         }
+
+        .hl-r {
+            font-weight: bold;
+            color:red;
+        }
     </style>
 
 </head>
@@ -185,48 +190,205 @@
     <div class="reveal">
         <div class="slides">
 
+            <!-- Title -->
             <section data-background-color="#dde1e7"><div class="std">
                 <h1 class="big-title">RSA Encryption Algorithm</h1>
 
                 <aside class="notes">
-                    Shhh, these are your private notes 📝
+                    記得先講一下每個東西怎麼操作
+                    Python 可以放大之後直接執行
+                    按 ESC 可以叫出投影片列表
+                    按 C 可以寫字; DEL 可以刪掉某一面的字
+                    按 A 可以叫出雷射筆
                 </aside>
             </div></section>
 
-            <section data-background-color="#dde1e7"><div class="std">
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title">Outline</h1>
-
                 <div class="ml100">
                     <ul class="cont">
-                        <li>RSA Algorithm
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
                             <ul>
-                                <li>Inspiration</li>
-                                <li>Simple example</li>
-                                <li>RSA example</li>
+                                <li><span data-id="s1s1">Simple example</span></li>
                             </ul>
                         </li>
-                        <li>Theory behind RSA
+                        <li><span data-id="s2">RSA Algorithm</span>
                             <ul>
-                                <li>Euler's Theorem</li>
-                                <li>Euclidean Algorithm</li>
-                                <li>Group Theory
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
                                     <ul>
-                                        <li>Lagrange Theorem</li>
-                                        <li>Multiplicative Group</li>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
                                     </ul>
                                 </li>
-                                <li>Proof of Euler's Theorem</li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div></section>
 
+            <!-- Outline -->
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="cont">
+                        <li><span data-id="s1" class="hl-r">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- Encryption algorithm from scratch -->
+            <section>
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title" data-id="title">Encryption algorithm from scratch</h1>
+                <div class="ml100">
+                    <div class="cont">How to encrypt message?</div>
+                    <span class="cont fragment">$\quad$ We have a message $M$</span>
+                    <span class="cont fragment">, encrypt by exponentiation $M^{e}$</span>
+                    <span class="cont fragment">,<br>$\quad$ truncate by $(\text{mod}\ n)$</span>
+                    <span class="cont fragment">, ensure that $0 < M < n$.</span>
+                    <br>
+                    <span class="cont fragment">If we choose $d$ and $e$ appropriately.
+                        <br>
+                        Then there exists a number $d$ such that $(M^{e})^{d} \equiv M (\text{mod}\ n)$.</span>
+                    <br><br>
+                    <span class="cont fragment">Question: How do we obtain $d$ by $n$ and $e$?</span>
+                </div>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Sample</h1>
+                <br><br>
+<pre><code class="python">n = 385
+e = 14
+M = 66
+#M = 77
+a = (M ** e) % n
+
+print(f'a = (M ^ e) % n = {a}\n')
+for d in range(1, 100):
+    decode = (a ** d) % n
+    print(f'd = {d}, (a ^ d) % n = {decode}', end='')
+    print(' <---' if decode == M else '')
+</code></pre>
+            </div></section>
+            </section>
+
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="cont">
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="cont">
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2" class="hl-r">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- RSA Algorithm -->
+            <section>
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">RSA Algorithm</h1>
                 <div class="ml100">
                     <div class="cont fragment" data-id="s1">Step1: Choose two distinct large prime numbers $p$, $q$, and let $n = pq$.</div>
                     <div class="cont fragment" data-id="s2">Step2: Calculate $\phi(n) = (p - 1)(q - 1)$. ($\phi(n)$ is Euler function)</div>
+<pre class="fragment fade-in-then-out" style="position:absolute;width:750px"><code class="python">N    = 50
+a, b = 5, 7
+d    = a * b
+
+print(f'a={a:2}:',
+      ''.join(['  ' if i % a else f'{i:2}' for i in range(N)]))
+print('     ',
+      ''.join([f'{"  " if i % a else " |"}' for i in range(N)]))
+print(f'd={d:2}:',
+      ''.join([f'{"--" if i % d else "-|"}' for i in range(N)]))
+print('     ',
+      ''.join([f'{"  " if i % b else " |"}' for i in range(N)]))
+print(f'b={b:2}:',
+      ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
+</code></pre>
                     <div class="cont fragment" data-id="s3">Step3: Choose a number $0 < e < \phi(n)$ such that $\gcd(e,\ \phi(n)) = 1$.</div>
                     <div class="cont fragment" data-id="s4">Step4: Calculate $0 < d < \phi(n)$ such that $ed \equiv 1\ (\text{mod}\ \phi(n))$.</div>
                     <div class="cont fragment" data-id="s5">Then, $(n,\ e)$ is the public key, and $(n,\ d)$ is the private key.</div>
@@ -240,8 +402,53 @@
                     (pq - 1) - (p - q)，pq - 1就是全都跟他互值，但這樣肯定多算，那多算的是哪些? 就是 p 跟 q 的倍數，而且 p q 倍數不重疊，所以就是扣掉 p 再扣掉 q
                 </aside>
             </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">Pre-define methods</h1>
+                <br><br>
+<pre><code class="python">def extended_gcd(a, b):
+    if not b[0]: return a
+    c = a[0] // b[0]
+    return extended_gcd(b,(a[0]%b[0],a[1]-c*b[1],a[2]-c*b[2]))
+def gcd(a, b):
+    result = list(extended_gcd((a, 1, 0), (b, 0, 1)))
+    while result[1] < 0: result[1] += b; result[2] -= a
+    return tuple(result)
+def fast_pow(M, exp, mod):
+    val, cumulative = 1, M
+    for c in bin(exp)[-1:1:-1]:
+        if c == '1': val = (val * cumulative) % mod
+        cumulative = cumulative**2 % mod
+    return val
+</code></pre>
+            </div></section>
+            <section data-background-color="#dde1e7"><div class="std">
+                <h1 class="title">RSA Sample</h1>
+                <br><br>
+<pre><code class="python"># RSA
+p, q = 37, 41
+#p, q = 15319, 15329
+n    = p * q
+φ    = (p - 1) * (q - 1)
+# public key
+e    = 29
+# private key generate
+_,d,k= gcd(e, φ)
+# message
+M = 30
+a = fast_pow(M, e, n)
+print('Output:\n')
+print(f'e = {e}, d = {d}')
+print(f'φ(n) = {φ}\n')
+print(f'gcd(e, φ(n)) = {_}\n')
+print(f'{d} * e + ({k}) * φ(n) = {d*e + k*φ}\n')
+print(f'M = {M}')
+print(f'a = (M ^ e) % n = {a}')
+print(f'M = (a ^ d) % n = {fast_pow(a, d, n)}')
+</code></pre>
+            </div></section>
+            </section>
 
-            <section>
+            <!-- <section>
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">RSA Algorithm</h1>
                 <div class="ml100">
@@ -326,8 +533,9 @@ print(f'a = (M ^ e) % n = {a}')
 print(f'M = (a ^ d) % n = {fast_pow(a, d, n)}')
 </code></pre>
             </div></section>
-            </section>
+            </section> -->
 
+            <!-- Euler's Theorem -->
             <section>
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">RSA Algorithm</h1>
@@ -455,6 +663,71 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
                 </div>
             </div></section>
 
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="cont">
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- Outline -->
+            <section data-background-color="#dde1e7" data-auto-animate><div class="std">
+                <h1 class="title">Outline</h1>
+                <div class="ml100">
+                    <ul class="cont">
+                        <li><span data-id="s1">Encryption algorithm from scratch</span>
+                            <ul>
+                                <li><span data-id="s1s1">Simple example</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s2">RSA Algorithm</span>
+                            <ul>
+                                <li><span data-id="s2s1">RSA example</span></li>
+                                <li><span data-id="s2s2">Euler's Theorem</span></li>
+                                <li><span data-id="s2s3">Euclidean Algorithm</span></li>
+                            </ul>
+                        </li>
+                        <li><span data-id="s3" class="hl-r">Theory behind</span>
+                            <ul>
+                                <li><span data-id="s3s1">Group Theory</span>
+                                    <ul>
+                                        <li><span data-id="s3s1s1">Lagrange Theorem</span></li>
+                                        <li><span data-id="s3s1s2">Multiplicative Group</span></li>
+                                    </ul>
+                                </li>
+                                <li><span data-id="s3s2">Proof of Euler's Theorem</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div></section>
+
+            <!-- Vector space -->
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">Vector space</h1>
                 <ol class="ml100">
@@ -475,6 +748,7 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
                 </aside>
             </div></section>
 
+            <!-- Group theory -->
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">Group theory</h1>
                 <ol class="ml100">
@@ -592,6 +866,7 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
                 </div>
             </div></section>
 
+            <!-- Lagrange Theorem -->
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">A consequence from the Lagrange theorem</h1>
                 <div class="ml100">
@@ -620,6 +895,7 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
                 </aside>
             </div></section>
 
+            <!-- Multiplicative Group -->
             <section>
             <section data-background-color="#dde1e7" data-auto-animate-restart data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
@@ -842,6 +1118,7 @@ print(f'b={b:2}:', ''.join(['  ' if i % b else f'{i:2}' for i in range(N)]))
             </div></section>
             </section>
 
+            <!-- Proof of Euler's Theorem -->
             <section data-background-color="#dde1e7" data-auto-animate><div class="std">
                 <h1 class="title" data-id="title">Multiplicative group of integers modulo $n$</h1>
                 <div class="ml100 cont" data-id="set" style="margin-top:30px">
